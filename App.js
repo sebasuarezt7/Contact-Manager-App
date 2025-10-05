@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { ContactProvider } from './src/utils/ContactContext';
 import ContactListScreen from './src/screens/ContactList/ContactListScreen';
-import AddContactScreen from './src/screens/AddContact/AddContactScreen'
+import AddContactScreen from './src/screens/AddContact/AddContactScreen';
 
 const Stack = createStackNavigator();
 

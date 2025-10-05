@@ -8,7 +8,7 @@ import {
   Linking,
   StyleSheet,
   SafeAreaView,
-  TouchableOpacity, // ✅ faltaba importar esto
+  TouchableOpacity, 
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useContacts} from '../../utils/ContactContext';
@@ -31,7 +31,7 @@ const ContactListScreen = ({navigation}) => {
   const [refreshing, setRefreshing] = useState(false);
   const [sortBy, setSortBy] = useState('name'); // 'name' | 'company' | 'recent'
 
-  // ✅ Memoized filtered and sorted contacts
+  //  Memoized filtered and sorted contacts
   const displayContacts = useMemo(() => {
     let filtered = searchContacts(contacts, searchTerm);
 
@@ -59,14 +59,14 @@ const ContactListScreen = ({navigation}) => {
     });
   }, [contacts, searchTerm, sortBy]);
 
-  // ✅ Handle pull to refresh
+  // Handle pull to refresh
   const handleRefresh = useCallback(async () => {
     setRefreshing(true);
     await refreshContacts();
     setRefreshing(false);
   }, [refreshContacts]);
 
-  // ✅ Handle contact press
+  //  Handle contact press
   const handleContactPress = useCallback(
     (contact) => {
       navigation.navigate('ContactDetails', {contactId: contact.id});
@@ -74,7 +74,7 @@ const ContactListScreen = ({navigation}) => {
     [navigation],
   );
 
-  // ✅ Handle favorite toggle
+  //  Handle favorite toggle
   const handleFavoritePress = useCallback(
     async (contactId) => {
       await toggleFavorite(contactId);
@@ -82,7 +82,7 @@ const ContactListScreen = ({navigation}) => {
     [toggleFavorite],
   );
 
-  // ✅ Handle phone call
+  //  Handle phone call
   const handleCallPress = useCallback((phoneNumber) => {
     const url = `tel:${phoneNumber}`;
     Linking.canOpenURL(url).then((supported) => {
@@ -94,7 +94,7 @@ const ContactListScreen = ({navigation}) => {
     });
   }, []);
 
-  // ✅ Handle SMS
+  //  Handle SMS
   const handleMessagePress = useCallback((phoneNumber) => {
     const url = `sms:${phoneNumber}`;
     Linking.canOpenURL(url).then((supported) => {
@@ -106,7 +106,7 @@ const ContactListScreen = ({navigation}) => {
     });
   }, []);
 
-  // ✅ Render contact item
+  //  Render contact item
   const renderContactItem = useCallback(
     ({item}) => (
       <ContactListItem
@@ -120,7 +120,7 @@ const ContactListScreen = ({navigation}) => {
     [handleContactPress, handleFavoritePress, handleCallPress, handleMessagePress],
   );
 
-  // ✅ Render empty state (corregido el cierre de etiquetas)
+  //  Render empty state (corregido el cierre de etiquetas)
   const renderEmptyState = useCallback(
     () => (
       <View style={styles.emptyContainer}>
@@ -136,7 +136,7 @@ const ContactListScreen = ({navigation}) => {
     [searchTerm],
   );
 
-  // ✅ Show loading spinner
+  // Show loading spinner
   if (loading) {
     return <LoadingSpinner />;
   }
